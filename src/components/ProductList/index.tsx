@@ -1,6 +1,7 @@
 import { Container } from './styles';
 import Product from '../Product';
 import Food from '../../models/Food'
+import ProductPerfil from '../ProductPerfil';
 
 export type Props = {
     produtos: Food[]
@@ -8,8 +9,9 @@ export type Props = {
 }
 
 export default function ProductList({ produtos, grid }: Props) {
-    return (
-        <div className="container">
+
+    if (grid === "home") {
+        return <div className="container">
             <Container grid={grid}>
                 {produtos.map((produto) => (
                     <Product
@@ -23,5 +25,18 @@ export default function ProductList({ produtos, grid }: Props) {
                 ))}
             </Container>
         </div>
-    )
+    } else {
+        return <div className="container">
+            <Container grid={grid}>
+                {produtos.map((produto) => (
+                    <ProductPerfil
+                        key={produto.id}
+                        title={produto.title}
+                        description={produto.description}
+                        image={produto.image}
+                    />
+                ))}
+            </Container>
+        </div>
+    }
 }
