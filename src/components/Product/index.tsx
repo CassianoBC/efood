@@ -1,17 +1,40 @@
-import { Card, CardButton, CardContent, CardDescription, CardTitle } from './styles'
+import { Card, CardTag, CardButton, CardContentHeader, CardContent, CardDescription, CardTitle, CardRating, CardInfos } from './styles'
 
-import sushi from '/sushi.png'
 
-export default function Product() {
+import star from '/star.png'
+import { Link } from 'react-router-dom'
+
+type Props = {
+    title: string;
+    description: string;
+    rating: number;
+    image: string;
+    infos: string[];
+}
+
+export default function Product({ title, description, rating, image, infos }: Props) {
     return (
         <Card>
-            <img src={sushi} alt="Sushi" />
+            <img src={image} alt={title} />
+            <CardInfos>
+            {infos.map((info) => (
+                <CardTag key={info}>{info}</CardTag>
+            ))}
+            </CardInfos>
             <CardContent>
-                <CardTitle>Hioki Sushi</CardTitle>
+                <CardContentHeader>
+                    <CardTitle>{title}</CardTitle>
+                    <CardRating>
+                        <span>{rating}</span>
+                        <img src={star} alt="Star" />
+                    </CardRating>
+                </CardContentHeader>
                 <CardDescription>
-                    Peça já o melhor da culinária japonesa no conforto da sua casa! Sushis frescos, sashimis deliciosos e pratos quentes irresistíveis. Entrega rápida, embalagens cuidadosas e qualidade garantida. <br /> Experimente o Japão sem sair do lar com nosso delivery!
+                    {description}
                 </CardDescription>
-                <CardButton>Saiba mais</CardButton>
+                <Link to="/perfil">
+                    <CardButton>Saiba mais</CardButton>
+                </Link>
             </CardContent>
         </Card>
     )

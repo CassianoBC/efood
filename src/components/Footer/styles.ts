@@ -7,6 +7,7 @@ export const FooterContainer = styled.footer`
     flex-direction: column;
     align-items: center;
     height: 300px;
+    margin-top: 72px;
 `;
 
 export const Logo = styled.img`
