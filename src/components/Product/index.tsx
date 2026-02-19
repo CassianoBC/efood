@@ -5,21 +5,23 @@ import star from '/star.png'
 import { Link } from 'react-router-dom'
 
 type Props = {
+    id: number;
     title: string;
     description: string;
     rating: number;
     image: string;
-    infos: string[];
+    tipo: string;
+    destacado: boolean;
 }
 
-export default function Product({ title, description, rating, image, infos }: Props) {
+export default function Product({ title, description, rating, image, tipo, destacado, id }: Props) {
+
     return (
         <Card>
             <img src={image} alt={title} />
             <CardInfos>
-            {infos.map((info) => (
-                <CardTag key={info}>{info}</CardTag>
-            ))}
+                {destacado === true ? <CardTag>Destaque da Semana</CardTag> : null}
+                <CardTag>{tipo}</CardTag>
             </CardInfos>
             <CardContent>
                 <CardContentHeader>
@@ -32,7 +34,7 @@ export default function Product({ title, description, rating, image, infos }: Pr
                 <CardDescription>
                     {description}
                 </CardDescription>
-                <Link to="/perfil">
+                <Link to={`/perfil/${id}`}>
                     <CardButton>Saiba mais</CardButton>
                 </Link>
             </CardContent>

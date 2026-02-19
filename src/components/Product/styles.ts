@@ -13,8 +13,9 @@ export const Card = styled.div`
 
     img {
         display: block;
-        max-width: 100%;
-        max-height: 100%;
+        max-width: 472px;
+        max-height: 217px;
+        object-fit: cover;
     }
 `
 
@@ -28,7 +29,7 @@ export const CardInfos = styled.div`
 
 
 export const CardTag = styled.div`
-
+    font-size: 12px;
     padding: 4px 6px;
 
     display: inline-block;
@@ -41,7 +42,9 @@ export const CardContent = styled.div`
     height: 100%;
     border: 1px solid ${cores.salmao};
     border-top: none;
-
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 `;
 
 export const CardTitle = styled.h2`

@@ -14,7 +14,7 @@ export default function ProductPerfil({ title, description, image }: Props) {
             <CardDescription>
                 {description}
             </CardDescription>
-            <CardButton>Adicionar ao Carrinho</CardButton>
+            <CardButton>Mais Detalhes</CardButton>
         </Card>
     )
 }
