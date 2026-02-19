@@ -1,13 +1,16 @@
-
+import type { Produto } from "../../pages/Home"
 import { Container, Subtitle, Title } from "./styles"
-import Hero from "/hero-perfil.png"
 
-export default function HeroPerfil() {
+type Props = {
+        banner: Produto
+}
+
+export default function HeroPerfil({ banner }: Props) {
     return (
-        <Container style={{ backgroundImage: `url(${Hero})` }}>
+        <Container style={{ backgroundImage: `url(${banner.capa})` }}>
             <div className="container">
-                <Title>Italiana</Title>
-                <Subtitle>La Dolce Vita Trattoria</Subtitle>
+                <Title>{banner.tipo}</Title>
+                <Subtitle>{banner.titulo}</Subtitle>
             </div>
         </Container>
     )

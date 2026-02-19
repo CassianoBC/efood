@@ -4,6 +4,27 @@ export const Container = styled.div`
     height: 280px;
     background-size: cover;
     background-position: center;
+    position: relative;
+    
+    img {
+    object-fit: cover;
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: 0;
+    }
+
+    .container {
+    z-index: 1;
+    position: relative;
+    }
 `;
 
 export const Title = styled.h2`

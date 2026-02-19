@@ -15,7 +15,7 @@ export type Produto = {
         nome: string
         descricao: string
         foto: string
-    }[]
+    }
 }
 
 export default function Home() {
@@ -29,7 +29,7 @@ export default function Home() {
     
     return (
         <>
-            <Header />
+            <Header type="home" />
             <ProductList produtos={produtos} />
         </>
     )
