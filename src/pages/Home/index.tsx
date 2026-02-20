@@ -17,6 +17,8 @@ export type Produto = {
         nome: string
         descricao: string
         foto: string
+        porcao: string
+        preco: number
     }
 }
 

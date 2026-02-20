@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react"
+import { useParams } from "react-router-dom"
+
+import type { Produto } from "../Home"
+
 import Header from "../../components/Header"
 import HeroPerfil from "../../components/HeroPerfil"
 import ProductListPerfil from "../../components/ProductListPerfil"
-import type { Produto } from "../Home"
-import { useParams } from "react-router-dom"
-import Modal from "../../components/Modal"
 
 
 
@@ -27,7 +28,6 @@ export default function Perfil() {
             <Header type="perfil" />
             <HeroPerfil banner={restaurante} />
             <ProductListPerfil />
-            <Modal />
         </>
     )
 }

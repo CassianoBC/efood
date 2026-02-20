@@ -1,20 +1,26 @@
 import { Card, CardButton, CardDescription, CardTitle } from "./styles";
 
-type Props = {
+export type Props = {
     title: string;
     description: string;
     image: string;
+    onOpen?: () => void;
 }
 
-export default function ProductPerfil({ title, description, image }: Props) {
+
+
+export default function ProductPerfil({ title, description, image, onOpen = () => {} }: Props) {
+
     return (
-        <Card>
-            <img src={image} alt={title} />
-            <CardTitle>{title}</CardTitle>
-            <CardDescription>
-                {description}
-            </CardDescription>
-            <CardButton>Mais Detalhes</CardButton>
-        </Card>
+        <>
+            <Card>
+                <img src={image} alt={title} />
+                <CardTitle>{title}</CardTitle>
+                <CardDescription>
+                    {description}
+                </CardDescription>
+                <CardButton onClick={onOpen}>Mais Detalhes</CardButton>
+            </Card>
+        </>
     )
 }

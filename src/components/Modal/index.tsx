@@ -1,26 +1,42 @@
-
 import Close from "../../../public/close.png"
-import Pizza from "../../../public/pizza.png"
-import { Button, CloseImg, Description, ModalContainer, ModalContent, Porcao, Title } from "./styles"
+
+import { Button, CloseImg, Description, ModalContainer, ModalContent, Porcao, Title, Modal } from "./styles"
+
+type Props = {
+    id: number;
+    title: string;
+    media: string;
+    description: string;
+    porcao: string;
+    price: string;
+    isOpen?: boolean;
+    onClose?: () => void;
+}
 
 
-export default function Modal() {
+export default function ModalCardapio({ title, media, description, porcao, price, id, isOpen = false, onClose = () => {} }: Props) {
+
     return (
-        <div className="container">
-            <ModalContainer>
-                <CloseImg src={Close} alt="Close" />
-                <ModalContent>
-                    <img src={Pizza} alt="Pizza" />
-                    <div>
-                        <Title>Pizza Marguerita</Title>
-                        <Description>
-                            A pizza Margherita é uma pizza clássica da culinária italiana, reconhecida por sua simplicidade e sabor inigualável. Ela é feita com uma base de massa fina e crocante, coberta com molho de tomate fresco, queijo mussarela de alta qualidade, manjericão fresco e azeite de oliva extra-virgem. A combinação de sabores é perfeita, com o molho de tomate suculento e ligeiramente ácido, o queijo derretido e cremoso e as folhas de manjericão frescas, que adicionam um toque de sabor herbáceo. É uma pizza simples, mas deliciosa, que agrada a todos os paladares e é uma ótima opção para qualquer ocasião.
-                        </Description>
-                        <Porcao>Serve: 2 a 3 pessoas</Porcao>
-                        <Button>Adicionar ao carrinho - R$ 60,90</Button>
-                    </div>
-                </ModalContent>
-            </ModalContainer>
-        </div>
+        <>
+            <Modal key={id} className={isOpen ? "visivel" : ""}>
+                <div className="container">
+                    <ModalContainer>
+                        <CloseImg src={Close} onClick={onClose} alt="Close" />
+                        <ModalContent>
+                            <img src={media} alt={title} />
+                            <div>
+                                <Title>{title}</Title>
+                                <Description>
+                                    {description}
+                                </Description>
+                                <Porcao>Serve: {porcao}</Porcao>
+                                <Button>Adicionar ao carrinho - {price}</Button>
+                            </div>
+                        </ModalContent>
+                    </ModalContainer>
+                </div>
+                <div className="overlay"></div>
+            </Modal>
+        </>
     )
 }
