@@ -1,0 +1,26 @@
+
+import Close from "../../../public/close.png"
+import Pizza from "../../../public/pizza.png"
+import { Button, CloseImg, Description, ModalContainer, ModalContent, Porcao, Title } from "./styles"
+
+
+export default function Modal() {
+    return (
+        <div className="container">
+            <ModalContainer>
+                <CloseImg src={Close} alt="Close" />
+                <ModalContent>
+                    <img src={Pizza} alt="Pizza" />
+                    <div>
+                        <Title>Pizza Marguerita</Title>
+                        <Description>
+                            A pizza Margherita é uma pizza clássica da culinária italiana, reconhecida por sua simplicidade e sabor inigualável. Ela é feita com uma base de massa fina e crocante, coberta com molho de tomate fresco, queijo mussarela de alta qualidade, manjericão fresco e azeite de oliva extra-virgem. A combinação de sabores é perfeita, com o molho de tomate suculento e ligeiramente ácido, o queijo derretido e cremoso e as folhas de manjericão frescas, que adicionam um toque de sabor herbáceo. É uma pizza simples, mas deliciosa, que agrada a todos os paladares e é uma ótima opção para qualquer ocasião.
+                        </Description>
+                        <Porcao>Serve: 2 a 3 pessoas</Porcao>
+                        <Button>Adicionar ao carrinho - R$ 60,90</Button>
+                    </div>
+                </ModalContent>
+            </ModalContainer>
+        </div>
+    )
+}

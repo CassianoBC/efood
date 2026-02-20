@@ -3,6 +3,8 @@ import Header from "../../components/Header";
 import ProductList from "../../components/ProductListHome";
 
 export type Produto = {
+    foto: string;
+    nome: string;
     id: number
     titulo: string
     descricao: string
