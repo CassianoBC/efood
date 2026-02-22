@@ -81,5 +81,6 @@ export const Button = styled.button`
     font-weight: bold;
     border: none;
     padding: 4px 6px;
+    cursor: pointer;
 `
 

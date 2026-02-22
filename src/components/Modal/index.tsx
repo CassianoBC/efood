@@ -3,7 +3,6 @@ import Close from "../../../public/close.png"
 import { Button, CloseImg, Description, ModalContainer, ModalContent, Porcao, Title, Modal } from "./styles"
 
 type Props = {
-    id: number;
     title: string;
     media: string;
     description: string;
@@ -14,11 +13,11 @@ type Props = {
 }
 
 
-export default function ModalCardapio({ title, media, description, porcao, price, id, isOpen = false, onClose = () => {} }: Props) {
+export default function ModalCardapio({ title, media, description, porcao, price, isOpen = false, onClose = () => {} }: Props) {
 
     return (
         <>
-            <Modal key={id} className={isOpen ? "visivel" : ""}>
+            <Modal className={isOpen ? "visivel" : ""}>
                 <div className="container">
                     <ModalContainer>
                         <CloseImg src={Close} onClick={onClose} alt="Close" />

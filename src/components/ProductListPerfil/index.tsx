@@ -1,10 +1,12 @@
-import ProductPerfil from "../ProductPerfil";
-import { Container } from "./style";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import type { Produto } from "../../pages/Home";
-import { getDescription, formataPreco } from "../../utils";
+
+import ProductPerfil from "../ProductPerfil";
 import Modal from "../Modal";
+
+import { Container } from "./style";
+import { getDescription, formataPreco } from "../../utils";
+import type { Produto } from "../../pages/Home";
 
 
 type CardapioItem = Produto['cardapio'];
@@ -54,7 +56,6 @@ export default function ProductListPerfil() {
                     description={selected.descricao}
                     porcao={selected.porcao}
                     price={formataPreco(selected.preco)}
-                    id={selected.id}
                     isOpen={isModalOpen}
                     onClose={closeModal}
                 />
