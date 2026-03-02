@@ -1,4 +1,5 @@
 import Close from "../../../public/close.png"
+import type { Produto } from "../../pages/Home";
 
 import { Button, CloseImg, Description, ModalContainer, ModalContent, Porcao, Title, Modal } from "./styles"
 

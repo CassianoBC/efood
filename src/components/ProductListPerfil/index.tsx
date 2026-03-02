@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 
 import ProductPerfil from "../ProductPerfil";
@@ -6,31 +6,31 @@ import Modal from "../Modal";
 
 import { Container } from "./style";
 import { getDescription, formataPreco } from "../../utils";
+import { useGetProdutoQuery } from "../../services/api";
 import type { Produto } from "../../pages/Home";
-
-
-type CardapioItem = Produto['cardapio'];
 
 export default function ProductListPerfil() {
     const { id } = useParams();
-    const [produtos, setProdutos] = useState<CardapioItem[]>([])
-    const [selected, setSelected] = useState<CardapioItem | null>(null)
-    const [isModalOpen, setIsModalOpen] = useState(false)
+    const { data: produtos } = useGetProdutoQuery(id || '');
+    console.log(produtos)
 
-    useEffect(() => {
-        fetch(`https://api-ebac.vercel.app/api/efood/restaurantes/${id}`)
-            .then(res => res.json())
-            .then((res) => setProdutos(res.cardapio))
-    }, [id])
+    const [selected, setSelected] = useState<Produto[] | undefined>(produtos);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
-    function openModal(produto: CardapioItem) {
-        setSelected(produto)
-        setIsModalOpen(true)
+    console.log(selected)
+
+    function openModal(produtos: Produto[]) {
+        setSelected(produtos);
+        setIsModalOpen(true);
     }
 
     function closeModal() {
-        setIsModalOpen(false)
-        setSelected(null)
+        setIsModalOpen(false);
+        setSelected(undefined);
+    }
+
+    if (!produtos) {
+        return <h3>Carregando...</h3>
     }
 
     return (
@@ -43,7 +43,7 @@ export default function ProductListPerfil() {
                                 title={produto.nome}
                                 description={getDescription(produto.descricao)}
                                 image={produto.foto}
-                                onOpen={() => openModal(produto)}
+                                onOpen={() => openModal(produtos)}
                             />
                         </div>
                     ))}
@@ -51,11 +51,11 @@ export default function ProductListPerfil() {
             </div>
             {selected && (
                 <Modal
-                    title={selected.nome}
+                    title={selected.name}
                     media={selected.foto}
                     description={selected.descricao}
-                    porcao={selected.porcao}
-                    price={formataPreco(selected.preco)}
+                    porcao={selected.cardapio.porcao}
+                    price={formataPreco(selected.cardapio.preco)}
                     isOpen={isModalOpen}
                     onClose={closeModal}
                 />
