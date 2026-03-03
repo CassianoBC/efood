@@ -3,6 +3,15 @@ import ProductList from "../../components/ProductListHome";
 
 import { useGetRestaurantsQuery } from "../../services/api";
 
+export type CardapioItem = {
+    id: number
+    nome: string
+    descricao: string
+    foto: string
+    porcao: string
+    preco: number
+}
+
 export type Produto = {
     foto: string;
     nome: string;
@@ -13,14 +22,7 @@ export type Produto = {
     capa: string
     tipo: string
     destacado: boolean
-    cardapio: {
-        id: number
-        nome: string
-        descricao: string
-        foto: string
-        porcao: string
-        preco: number
-    }
+    cardapio: CardapioItem[]
 }
 
 export default function Home() {

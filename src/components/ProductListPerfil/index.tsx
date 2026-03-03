@@ -7,19 +7,13 @@ import Modal from "../Modal";
 import { Container } from "./style";
 import { getDescription, formataPreco } from "../../utils";
 import { useGetProdutoQuery } from "../../services/api";
-import type { Produto } from "../../pages/Home";
-
-export type CardapioItem = Produto['cardapio'];
+import type { CardapioItem } from "../../pages/Home";
 
 export default function ProductListPerfil() {
     const { id } = useParams();
     const { data: produtos } = useGetProdutoQuery(id!);
 
     console.log(produtos)
-
-    const [ menu ] = useState<CardapioItem[]>(produtos.cardapio);
-
-    console.log(menu)
 
     const [selected, setSelected] = useState<CardapioItem | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -34,15 +28,11 @@ export default function ProductListPerfil() {
         setSelected(null);
     }
 
-    if (!menu) {
-        return <h3>Carregando...</h3>
-    }
-
-    return (
-        <>
-            <div className="container">
-                <Container>
-                    {menu.map((item) => (
+    function handleMenu(menuItems: CardapioItem[]) {
+        if (!menuItems) {
+            return <h3>Carregando...</h3>
+        } return (
+            menuItems.map((item) => (
                         <div key={item.id}>
                             <ProductPerfil
                                 title={item.nome}
@@ -51,7 +41,19 @@ export default function ProductListPerfil() {
                                 onOpen={() => openModal(item)}
                             />
                         </div>
-                    ))}
+                    ))
+        )
+    }
+
+    if (!produtos) {
+        return <h3>Carregando...</h3>
+    }
+
+    return (
+        <>
+            <div className="container">
+                <Container>
+                    {handleMenu(produtos.cardapio)}
                 </Container>
             </div>
             {selected && (

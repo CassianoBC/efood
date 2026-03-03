@@ -23,12 +23,12 @@ export default function Header({ type }: Props) {
         <HeaderContainer type={type} style={{ backgroundImage: `url(${HeaderImg})` }}>
             <HeaderContent className="container">
                 <Link to="/">
-                    <HeaderLink href="#">Restaurantes</HeaderLink>
+                    <HeaderLink>Restaurantes</HeaderLink>
                 </Link>
                 <Link to="/">
                     <HeaderLogoPerfil src={Logo} alt="Logo do site" />
                 </Link>
-                <HeaderLink href="#">0 produto(s) no carrinho</HeaderLink>
+                <HeaderLink>0 produto(s) no carrinho</HeaderLink>
             </HeaderContent>
         </HeaderContainer>
     )

@@ -10,7 +10,7 @@ import { useGetProdutoQuery } from "../../services/api"
 export default function Perfil() {
     const { id } = useParams()
 
-    const { data: restaurante } = useGetProdutoQuery(id || '')
+    const { data: restaurante } = useGetProdutoQuery(id!)
 
     if (!restaurante) {
         return <h3>Carregando...</h3>

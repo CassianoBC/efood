@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import type { Produto } from "../pages/Home";
 
-import type  { CardapioItem } from "../components/ProductListPerfil";
+//import type  { CardapioItem } from "../components/ProductListPerfil";
 
 const api = createApi({
     baseQuery: fetchBaseQuery({
@@ -11,7 +11,7 @@ const api = createApi({
         getRestaurants: builder.query<Produto[], void>({
             query: () => "restaurantes"
         }),
-        getProduto: builder.query<CardapioItem[], string>({
+        getProduto: builder.query<Produto, string>({
             query: (id) => `restaurantes/${id}`
         })
     })

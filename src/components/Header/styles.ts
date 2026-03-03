@@ -46,7 +46,7 @@ export const HeaderLogoPerfil = styled.img`
     transform: translate(-50%, -50%);
 `;
 
-export const HeaderLink = styled.a`
+export const HeaderLink = styled.p`
     color: ${cores.salmao};
     text-decoration: none;
     font-weight: 900;
