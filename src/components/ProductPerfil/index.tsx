@@ -10,7 +10,6 @@ export type Props = {
 
 
 export default function ProductPerfil({ title, description, image, onOpen = () => {} }: Props) {
-
     return (
         <>
             <Card>
