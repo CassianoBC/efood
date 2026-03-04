@@ -1,40 +1,53 @@
-import Close from "../../../public/close.png"
+import { useDispatch, useSelector } from "react-redux";
+import { add, open } from "../../store/reducers/cart";
+import { closeModal } from "../../store/reducers/modal";
 
 import { Button, CloseImg, Description, ModalContainer, ModalContent, Porcao, Title, Modal } from "./styles"
 
+import Close from "/close.png"
+import type { RootReducer } from "../../store";
+import type { CardapioItem } from "../../pages/Home";
+import { formataPreco } from "../../utils";
+
 type Props = {
-    title: string;
-    media: string;
-    description: string;
-    porcao: string;
-    price: string;
-    isOpen?: boolean;
-    onClose?: () => void;
+    cardapio: CardapioItem
 }
 
 
-export default function ModalCardapio({ title, media, description, porcao, price, isOpen = false, onClose = () => {} }: Props) {
+export default function ModalCardapio({ cardapio }: Props) {
+    const dispatch = useDispatch()
+    const { isOpenModal } = useSelector((state: RootReducer) => state.modal)
+
+    const addToCart = () => {
+        dispatch(add(cardapio))
+        dispatch(open())
+        dispatch(closeModal())
+    }
+
+    const handleCloseModal = () => {
+        dispatch(closeModal())
+    }
 
     return (
         <>
-            <Modal className={isOpen ? "visivel" : ""}>
+            <Modal  className={isOpenModal ? "visivel" : ""}>
                 <div className="container">
                     <ModalContainer>
-                        <CloseImg src={Close} onClick={onClose} alt="Close" />
+                        <CloseImg src={Close} onClick={handleCloseModal} alt="Close" />
                         <ModalContent>
-                            <img src={media} alt={title} />
+                            <img src={cardapio.foto} alt={cardapio.nome} />
                             <div>
-                                <Title>{title}</Title>
+                                <Title>{cardapio.nome}</Title>
                                 <Description>
-                                    {description}
+                                    {cardapio.descricao}
                                 </Description>
-                                <Porcao>Serve: {porcao}</Porcao>
-                                <Button>Adicionar ao carrinho - {price}</Button>
+                                <Porcao>Serve: {cardapio.porcao}</Porcao>
+                                <Button onClick={() => addToCart()}>Adicionar ao carrinho - {formataPreco(Number(cardapio.preco))}</Button>
                             </div>
                         </ModalContent>
                     </ModalContainer>
                 </div>
-                <div className="overlay"></div>
+                <div onClick={handleCloseModal} className="overlay"></div>
             </Modal>
         </>
     )
