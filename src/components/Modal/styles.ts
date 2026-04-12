@@ -47,12 +47,17 @@ export const ModalContent = styled.div`
     padding: 32px;
 
     img {
-        width: 280px;
+        width: 100%;
+        max-width: 280px;
         height: 280px;
         object-fit: cover;
     }
 
-    @media (max-width: ${breakpoints.tablet}) {
+    .info {
+        max-width: 656px;
+    }
+
+    @media (max-width: ${breakpoints.desktop}) {
         flex-direction: column;
         align-items: center;
         text-align: center;

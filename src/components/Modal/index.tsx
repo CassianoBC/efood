@@ -35,7 +35,7 @@ export default function ModalCardapio({ cardapio }: Props) {
                         <S.CloseImg src={Close} onClick={handleCloseModal} alt="Close" />
                         <S.ModalContent>
                             <img src={cardapio.foto} alt={cardapio.nome} />
-                            <div>
+                            <div className="info">
                                 <S.Title>{cardapio.nome}</S.Title>
                                 <S.Description>
                                     {cardapio.descricao}
