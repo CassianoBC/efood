@@ -1,13 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
-import { add, open } from "../../store/reducers/cart";
-import { closeModal } from "../../store/reducers/modal";
-
-import { Button, CloseImg, Description, ModalContainer, ModalContent, Porcao, Title, Modal } from "./styles"
 
 import Close from "/close.png"
+import { add, open } from "../../store/reducers/cart";
+import { closeModal } from "../../store/reducers/modal";
 import type { RootReducer } from "../../store";
-import type { CardapioItem } from "../../pages/Home";
 import { formataPreco } from "../../utils";
+
+import * as S from "./styles"
 
 type Props = {
     cardapio: CardapioItem
@@ -30,25 +29,25 @@ export default function ModalCardapio({ cardapio }: Props) {
 
     return (
         <>
-            <Modal  className={isOpenModal ? "visivel" : ""}>
+            <S.Modal  className={isOpenModal ? "visivel" : ""}>
                 <div className="container">
-                    <ModalContainer>
-                        <CloseImg src={Close} onClick={handleCloseModal} alt="Close" />
-                        <ModalContent>
+                    <S.ModalContainer>
+                        <S.CloseImg src={Close} onClick={handleCloseModal} alt="Close" />
+                        <S.ModalContent>
                             <img src={cardapio.foto} alt={cardapio.nome} />
                             <div>
-                                <Title>{cardapio.nome}</Title>
-                                <Description>
+                                <S.Title>{cardapio.nome}</S.Title>
+                                <S.Description>
                                     {cardapio.descricao}
-                                </Description>
-                                <Porcao>Serve: {cardapio.porcao}</Porcao>
-                                <Button onClick={() => addToCart()}>Adicionar ao carrinho - {formataPreco(Number(cardapio.preco))}</Button>
+                                </S.Description>
+                                <S.Porcao>Serve: {cardapio.porcao}</S.Porcao>
+                                <S.Button onClick={() => addToCart()}>Adicionar ao carrinho - {formataPreco(Number(cardapio.preco))}</S.Button>
                             </div>
-                        </ModalContent>
-                    </ModalContainer>
+                        </S.ModalContent>
+                    </S.ModalContainer>
                 </div>
                 <div onClick={handleCloseModal} className="overlay"></div>
-            </Modal>
+            </S.Modal>
         </>
     )
 }

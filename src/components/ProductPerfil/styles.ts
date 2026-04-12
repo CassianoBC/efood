@@ -1,18 +1,25 @@
 import styled from "styled-components";
-import { cores } from "../../styles";
+
+import { breakpoints, colors } from "../../styles";
 
 export const Card = styled.div`
     display: flex;
     flex-direction: column;
-    background-color: ${cores.salmao};
+    background-color: ${colors.salmon};
     padding: 8px;
-    color: ${cores.amareloQueimado};
+    max-width: 320px;
+    color: ${colors.burntYellow};
     gap: 8px;
     margin-bottom: 32px;
 
     img {
         max-width: 304px;
         max-height: 167px;
+    }
+
+    @media (max-width: ${breakpoints.mobile}) {
+        width: 100%;
+        max-width: 300px;
     }
 `;
 
@@ -27,8 +34,8 @@ export const CardDescription = styled.p`
 `;
 
 export const CardButton = styled.button`
-    background-color: ${cores.amareloQueimado};
-    color: ${cores.salmao};
+    background-color: ${colors.burntYellow};
+    color: ${colors.salmon};
     border: none;
     padding: 4px;
     font-size: 14px;

@@ -1,5 +1,4 @@
-import type { Produto } from "../../pages/Home"
-import { Container, Subtitle, Title } from "./styles"
+import * as S from "./styles"
 
 type Props = {
         banner: Produto
@@ -7,11 +6,11 @@ type Props = {
 
 export default function HeroPerfil({ banner }: Props) {
     return (
-        <Container style={{ backgroundImage: `url(${banner.capa})` }}>
+        <S.Container style={{ backgroundImage: `url(${banner.capa})` }}>
             <div className="container">
-                <Title>{banner.tipo}</Title>
-                <Subtitle>{banner.titulo}</Subtitle>
+                <S.Title>{banner.tipo}</S.Title>
+                <S.Subtitle>{banner.titulo}</S.Subtitle>
             </div>
-        </Container>
+        </S.Container>
     )
 }

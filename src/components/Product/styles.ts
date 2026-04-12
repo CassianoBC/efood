@@ -1,21 +1,29 @@
 import styled from "styled-components";
-import { cores } from "../../styles";
+
+import { breakpoints, colors } from "../../styles";
 
 export const Card = styled.div`
     display: flex;
     flex-direction: column;
-    background-color: ${cores.branco};
-    color: ${cores.salmao};
+    background-color: ${colors.white};
+    color: ${colors.salmon};
     max-width: 472px;
-    min-height: 398px;
+    
     margin-bottom: 48px;
     position: relative;
 
     img {
         display: block;
-        max-width: 472px;
         max-height: 217px;
         object-fit: cover;
+    }
+
+    @media (max-width: ${breakpoints.tablet}) {
+        max-width: 80%;
+
+        img {
+            width: 100%;
+        }
     }
 `
 
@@ -34,14 +42,14 @@ export const CardTag = styled.div`
     padding: 4px 6px;
 
     display: inline-block;
-    background-color: ${cores.salmao};
-    color: ${cores.brancoGelo};
+    background-color: ${colors.salmon};
+    color: ${colors.iceWhite};
 `
 
 export const CardContent = styled.div`
     padding: 8px;
     height: 100%;
-    border: 1px solid ${cores.salmao};
+    border: 1px solid ${colors.salmon};
     border-top: none;
     display: flex;
     flex-direction: column;
@@ -60,8 +68,8 @@ export const CardDescription = styled.p`
 `;
 
 export const CardButton = styled.button`
-    background-color: ${cores.salmao};
-    color: ${cores.brancoGelo};
+    background-color: ${colors.salmon};
+    color: ${colors.iceWhite};
     border: none;
     font-size: 14px;
     font-weight: bold;
@@ -69,7 +77,7 @@ export const CardButton = styled.button`
     cursor: pointer;
 
     &:hover {
-        background-color: darken(${cores.salmao}, 10%);
+        background-color: darken(${colors.salmon}, 10%);
     }
 `;
 

@@ -1,11 +1,17 @@
 import { createGlobalStyle } from "styled-components";
 
-export const cores = {
-    branco: '#FFFFFF',
-    brancoGelo: '#FFF8F2',
-    salmao: '#E66767',
-    amareloQueimado: '#FFEBD9',
+export const colors = {
+    white: '#FFFFFF',
+    iceWhite: '#FFF8F2',
+    salmon: '#E66767',
+    burntYellow: '#FFEBD9',
 
+}
+
+export const breakpoints = {
+    desktop: '1024px',
+    tablet: '768px',
+    mobile: '480px'
 }
 
 export const GlobalStyle = createGlobalStyle`
@@ -15,10 +21,11 @@ export const GlobalStyle = createGlobalStyle`
         box-sizing: border-box;
         font-family: 'Roboto', sans-serif;
         list-style: none;
+        overflow-x: hidden;
     }
 
     body {
-        background-color: ${cores.brancoGelo};
+        background-color: ${colors.iceWhite};
     }
 
     .container {

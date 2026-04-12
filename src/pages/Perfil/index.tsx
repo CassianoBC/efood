@@ -5,8 +5,6 @@ import HeroPerfil from "../../components/HeroPerfil"
 import ProductListPerfil from "../../components/ProductListPerfil"
 import { useGetProdutoQuery } from "../../services/api"
 
-
-
 export default function Perfil() {
     const { id } = useParams()
 

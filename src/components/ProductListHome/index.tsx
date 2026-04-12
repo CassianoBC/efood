@@ -1,7 +1,6 @@
-import { Container } from './styles';
 import { getDescription } from '../../utils'; 
 import Product from '../Product';
-import type { Produto } from '../../pages/Home';
+import { Container } from './styles';
 
 export type Props = {
     produtos?: Produto[]

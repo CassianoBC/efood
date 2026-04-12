@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { cores } from "../../styles";
 
+import { breakpoints, colors } from "../../styles";
 import type { Props } from ".";
 
 export const HeaderContainer = styled.div<Props>`
@@ -9,10 +9,15 @@ export const HeaderContainer = styled.div<Props>`
     align-items: center;
     justify-content: space-between;
     height: ${(props) => (props.type === "home" ? "384px" : "186px")};
-    color: ${cores.salmao};
+    color: ${colors.salmon};
 
     a {
     text-decoration: none;
+    }
+
+    @media (max-width: ${breakpoints.tablet}) {
+        justify-content: center;
+        gap: 56px;
     }
 `;
 
@@ -28,6 +33,10 @@ export const HeaderTitle = styled.h1`
     text-align: center;
     font-size: 36px;
     font-weight: 900;
+
+    @media (max-width: ${breakpoints.tablet}) {
+        font-size: 24px;
+    }
 `;
 
 export const HeaderContent = styled.div`
@@ -35,19 +44,29 @@ export const HeaderContent = styled.div`
     justify-content: space-between;
     align-items: center;
     position: relative;
+    height: 100%;
+
+    @media (max-width: ${breakpoints.desktop}) {
+        flex-direction: column;
+        padding: 16px 0;
+        }
 `
 
 export const HeaderLogoPerfil = styled.img`
     width: 125px;
     height: 58px;
+    
+
+    @media (min-width: ${breakpoints.desktop}) {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+        }
 `;
 
 export const HeaderLink = styled.p`
-    color: ${cores.salmao};
+    color: ${colors.salmon};
     text-decoration: none;
     font-weight: 900;
     font-size: 18px;
