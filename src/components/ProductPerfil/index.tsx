@@ -1,4 +1,4 @@
-import { Card, CardButton, CardDescription, CardTitle } from "./styles";
+import * as S from "./styles";
 
 export type Props = {
     title: string;
@@ -7,19 +7,17 @@ export type Props = {
     onOpen?: () => void;
 }
 
-
-
 export default function ProductPerfil({ title, description, image, onOpen = () => {} }: Props) {
     return (
         <>
-            <Card>
+            <S.Card>
                 <img src={image} alt={title} />
-                <CardTitle>{title}</CardTitle>
-                <CardDescription>
+                <S.CardTitle>{title}</S.CardTitle>
+                <S.CardDescription>
                     {description}
-                </CardDescription>
-                <CardButton onClick={onOpen}>Mais Detalhes</CardButton>
-            </Card>
+                </S.CardDescription>
+                <S.CardButton onClick={onOpen}>Mais Detalhes</S.CardButton>
+            </S.Card>
         </>
     )
 }

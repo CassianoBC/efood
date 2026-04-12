@@ -1,8 +1,7 @@
-import { Card, CardTag, CardButton, CardContentHeader, CardContent, CardDescription, CardTitle, CardRating, CardInfos } from './styles'
-
+import { Link } from 'react-router-dom'
 
 import star from '/star.png'
-import { Link } from 'react-router-dom'
+import * as S from './styles'
 
 type Props = {
     id: number;
@@ -17,27 +16,27 @@ type Props = {
 export default function Product({ title, description, rating, image, tipo, destacado, id }: Props) {
 
     return (
-        <Card>
+        <S.Card>
             <img src={image} alt={title} />
-            <CardInfos>
-                {destacado === true ? <CardTag>Destaque da Semana</CardTag> : null}
-                <CardTag>{tipo}</CardTag>
-            </CardInfos>
-            <CardContent>
-                <CardContentHeader>
-                    <CardTitle>{title}</CardTitle>
-                    <CardRating>
+            <S.CardInfos>
+                {destacado === true ? <S.CardTag>Destaque da Semana</S.CardTag> : null}
+                <S.CardTag>{tipo}</S.CardTag>
+            </S.CardInfos>
+            <S.CardContent>
+                <S.CardContentHeader>
+                    <S.CardTitle>{title}</S.CardTitle>
+                    <S.CardRating>
                         <span>{rating}</span>
                         <img src={star} alt="Star" />
-                    </CardRating>
-                </CardContentHeader>
-                <CardDescription>
+                    </S.CardRating>
+                </S.CardContentHeader>
+                <S.CardDescription>
                     {description}
-                </CardDescription>
+                </S.CardDescription>
                 <Link to={`/perfil/${id}`}>
-                    <CardButton>Saiba mais</CardButton>
+                    <S.CardButton>Saiba mais</S.CardButton>
                 </Link>
-            </CardContent>
-        </Card>
+            </S.CardContent>
+        </S.Card>
     )
 }

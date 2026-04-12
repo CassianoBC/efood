@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { cores } from "../../styles";
+
+import { breakpoints, colors } from "../../styles";
 
 export const Modal = styled.div`
     position: fixed;
@@ -24,12 +25,18 @@ export const Modal = styled.div`
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.8);
-}
+    }
+
+    .container {
+        @media (max-width: ${breakpoints.desktop}) {
+        width: 90%;
+    }
+    }
 `
 
 export const ModalContainer = styled.div`
-    background-color: ${cores.salmao};
-    color: ${cores.branco};
+    background-color: ${colors.salmon};
+    color: ${colors.white};
     position: relative;
     z-index: 1;
 `
@@ -43,6 +50,12 @@ export const ModalContent = styled.div`
         width: 280px;
         height: 280px;
         object-fit: cover;
+    }
+
+    @media (max-width: ${breakpoints.tablet}) {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
     }
 `
 
@@ -75,8 +88,8 @@ export const Porcao = styled.p`
 `
 
 export const Button = styled.button`
-    background-color: ${cores.brancoGelo};
-    color: ${cores.salmao};
+    background-color: ${colors.iceWhite};
+    color: ${colors.salmon};
     font-size: 14px;
     font-weight: bold;
     border: none;

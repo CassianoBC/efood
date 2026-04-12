@@ -1,12 +1,12 @@
 import styled from "styled-components";
-import { cores } from "../../styles";
+
+import { colors } from "../../styles";
 
 export const FooterContainer = styled.footer`
-    background-color: ${cores.amareloQueimado};
+    background-color: ${colors.burntYellow};
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 300px;
     margin-top: 72px;
 `;
 
@@ -33,5 +33,5 @@ export const FooterText = styled.p`
     margin-top: 80px;
     margin-bottom: 40px;
     max-width: 480px;
-    color: ${cores.salmao};
+    color: ${colors.salmon};
 `;

@@ -1,52 +1,30 @@
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { remove, close } from "../../store/reducers/cart";
 
-import { Button, CartContainer, CartContent, CartIcone, CartItem, CartTotal, Overlay, Sidebar } from "./styles"
-
-import Lixeira from "/lixeira.png"
+import CartProducts from "../CartProducts";
+import CartDelivery from "../CartDelivery";
+import { close } from "../../store/reducers/cart";
 import type { RootReducer } from "../../store";
-import { formataPreco } from "../../utils";
+
+import * as S from "./styles"
 
 export default function Cart() {
     const dispatch = useDispatch()
-    const { isOpen, items } = useSelector((state: RootReducer) => state.cart)
+    const { isOpen } = useSelector((state: RootReducer) => state.cart)
+    const [openDelivery, setOpenDelivery] = useState(false)
 
     const closeCart = () => {
         dispatch(close())
     }
 
-    const removeItem = (id: number) => {
-        dispatch(remove(id))
-    }
-
-    const getTotalPrice = () => {
-        return items.reduce((acumulador, valorAtual) => {
-            return (acumulador += valorAtual.preco)
-        }, 0)
-    }
-
     return (
-        <CartContainer className={isOpen ? "is-open" : ""}>
-            <Overlay onClick={closeCart} />
-            <Sidebar>
-                <ul>
-                    {items.map(item => (
-                        <CartItem key={item.id}>
-                            <img src={item.foto} alt="Pizza" />
-                            <CartContent>
-                                <h3>{item.nome}</h3>
-                                <p>{formataPreco(item.preco)}</p>
-                            </CartContent>
-                            <CartIcone onClick={() => removeItem(item.id)} src={Lixeira} alt="Lixeira" />
-                        </CartItem>
-                    ))}
-                </ul>
-                <CartTotal>
-                    <p>Valor total</p>
-                    <p>{formataPreco(getTotalPrice())}</p>
-                </CartTotal>
-                <Button>Continuar com a entrega</Button>
-            </Sidebar>
-        </CartContainer>
+        <S.CartContainer className={isOpen ? "is-open" : ""}>
+            <S.Overlay onClick={closeCart} />
+            {openDelivery === false ? (
+                <CartProducts onClick={() => setOpenDelivery(true)} />
+            ) : (
+                <CartDelivery onClick={() => setOpenDelivery(false)} />
+            )}
+        </S.CartContainer>
     )
 }

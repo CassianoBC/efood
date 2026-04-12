@@ -1,12 +1,12 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { open } from '../../store/reducers/cart';
 import { Link } from 'react-router-dom';
-
-import { HeaderContainer, HeaderLogo, HeaderTitle, HeaderContent, HeaderLink, HeaderLogoPerfil } from './styles'
 
 import Logo from '/logo1.png'
 import HeaderImg from '/bg-image.png'
+import { open } from '../../store/reducers/cart';
 import type { RootReducer } from '../../store';
+
+import * as S from './styles'
 
 export type Props = {
     type: 'home' | 'perfil';
@@ -22,25 +22,25 @@ export default function Header({ type }: Props) {
 
     if (type === 'home') {
         return (
-            <HeaderContainer type={type} style={{ backgroundImage: `url(${HeaderImg})` }}>
-                <HeaderLogo src={Logo} alt="Logo" />
-                <HeaderTitle>
+            <S.HeaderContainer type={type} style={{ backgroundImage: `url(${HeaderImg})` }}>
+                <S.HeaderLogo src={Logo} alt="Logo" />
+                <S.HeaderTitle>
                     Viva experiências gastronômicas no conforto da sua casa
-                </HeaderTitle>
-            </HeaderContainer>
+                </S.HeaderTitle>
+            </S.HeaderContainer>
         )
     }
     return (
-        <HeaderContainer type={type} style={{ backgroundImage: `url(${HeaderImg})` }}>
-            <HeaderContent className="container">
+        <S.HeaderContainer type={type} style={{ backgroundImage: `url(${HeaderImg})` }}>
+            <S.HeaderContent className="container">
                 <Link to="/">
-                    <HeaderLink>Restaurantes</HeaderLink>
+                    <S.HeaderLink>Restaurantes</S.HeaderLink>
                 </Link>
                 <Link to="/">
-                    <HeaderLogoPerfil src={Logo} alt="Logo do site" />
+                    <S.HeaderLogoPerfil src={Logo} alt="Logo do site" />
                 </Link>
-                <HeaderLink onClick={cartOpen}>{items.length} produto(s) no carrinho</HeaderLink>
-            </HeaderContent>
-        </HeaderContainer>
+                <S.HeaderLink onClick={cartOpen}>{items.length} produto(s) no carrinho</S.HeaderLink>
+            </S.HeaderContent>
+        </S.HeaderContainer>
     )
 }

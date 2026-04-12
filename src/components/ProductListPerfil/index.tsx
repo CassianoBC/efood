@@ -1,15 +1,13 @@
 import { useDispatch } from "react-redux"; 
-import { openModal } from "../../store/reducers/modal";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 
 import ProductPerfil from "../ProductPerfil";
 import Modal from "../Modal";
-
-import { Container } from "./style";
+import { openModal } from "../../store/reducers/modal";
 import { getDescription } from "../../utils";
 import { useGetProdutoQuery } from "../../services/api";
-import type { CardapioItem } from "../../pages/Home";
+import { Container } from "./style";
 
 export default function ProductListPerfil() {
     const { id } = useParams();

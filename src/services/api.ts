@@ -1,7 +1,8 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import type { Produto } from "../pages/Home";
 
-//import type  { CardapioItem } from "../components/ProductListPerfil";
+type PurchaseResponse = {
+    orderId: string
+}
 
 const api = createApi({
     baseQuery: fetchBaseQuery({
@@ -13,9 +14,16 @@ const api = createApi({
         }),
         getProduto: builder.query<Produto, string>({
             query: (id) => `restaurantes/${id}`
+        }),
+        purchase: builder.mutation<PurchaseResponse, PurchasePayloadProps>({
+            query: (body) => ({
+                url: "checkout",
+                method: "POST",
+                body
+            })
         })
     })
 })
 
-export const { useGetRestaurantsQuery, useGetProdutoQuery } = api;
+export const { useGetRestaurantsQuery, useGetProdutoQuery, usePurchaseMutation } = api;
 export default api;
