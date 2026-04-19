@@ -6,6 +6,10 @@ type inputGroupProps = {
     maxWidth?: string
 }
 
+type props = {
+    isValid?: boolean;
+}
+
 export const Sidebar = styled.aside`
     background-color: ${colors.salmon};
     max-width: 360px;
@@ -43,8 +47,14 @@ export const Sidebar = styled.aside`
     }
 `
 
-export const Form = styled.form`
+export const Form = styled.form<props>`
     margin-top: 16px;
+
+    p {
+        display: ${(props) => props.isValid ? "block" : "none"};
+        text-align: center;
+        font-weight: bold;
+    }
 `
 
 export const InputGroup = styled.div<inputGroupProps>`

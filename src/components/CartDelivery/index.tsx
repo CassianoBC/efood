@@ -18,6 +18,7 @@ type props = {
 
 export default function CartDelivery({ onClick }: props) {
     const [paymentStep, setPaymentStep] = useState(false)
+    const [isValid, setIsValid] = useState(false)
     const [purchase, { data, isSuccess, isLoading }] = usePurchaseMutation()
     const { items } = useSelector((state: RootReducer) => state.cart)
     const dispatch = useDispatch()
@@ -44,7 +45,9 @@ export default function CartDelivery({ onClick }: props) {
                 .required('O campo é obrigatório'),
             description: Yup.string().required('O campo é obrigatório'),
             city: Yup.string().required('O campo é obrigatório'),
-            zipCode: Yup.string().required('O campo é obrigatório'),
+            zipCode: Yup.string()
+                .required('O campo é obrigatório')
+                .min(8, 'O CEP deve ter 8 dígitos'),
             number: Yup.number().required('O campo é obrigatório'),
             name: Yup.string().required('O campo é obrigatório'),
             cardNumber: Yup.string()
@@ -110,6 +113,15 @@ export default function CartDelivery({ onClick }: props) {
         window.location.href = "/"
     }
 
+    const paymentStepTrue = () => {
+        if (form.values.receiver && form.values.description && form.values.city && form.values.zipCode && form.values.number != '') {
+            setPaymentStep(true)
+            setIsValid(false)
+        } else {
+            setIsValid(true)
+        }
+    }
+
     return (
         <>
             <S.Sidebar>
@@ -137,7 +149,7 @@ export default function CartDelivery({ onClick }: props) {
                         {paymentStep === false ? (
                             <>
                                 <h2>Entrega</h2>
-                                <S.Form onSubmit={form.handleSubmit}>
+                                <S.Form isValid={isValid} onSubmit={form.handleSubmit}>
                                     <S.InputGroup>
                                         <label htmlFor="receiver">Quem irá receber?</label>
                                         <input type="text" className={checkInputHasError("receiver") ? "error" : ""} name="receiver" value={form.values.receiver} onChange={form.handleChange} onBlur={form.handleBlur} id="receiver" />
@@ -164,8 +176,11 @@ export default function CartDelivery({ onClick }: props) {
                                         <label htmlFor="complement">Complemento (opcional)</label>
                                         <input type="text" name="complement" value={form.values.complement} onChange={form.handleChange} onBlur={form.handleBlur} id="complement" />
                                     </S.InputGroup>
+                                    <p>
+                                        Para prosseguir para pagamento, voce deve preencher os campos de entrega corretamente.
+                                    </p>
                                     <S.ButtonsGroup>
-                                        <button type="button" onClick={() => setPaymentStep(true)}>Continuar para pagamento</button>
+                                        <button type="button" onClick={paymentStepTrue}>Continuar para pagamento</button>
                                         <button type="button" onClick={onClick}>
                                             Voltar para o carrinho
                                         </button>
